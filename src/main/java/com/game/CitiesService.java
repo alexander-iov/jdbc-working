@@ -1,17 +1,20 @@
 package com.game;
 
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class CitiesService {
 
-    private final List<City> cities = new ArrayList<>();
-
-    public void addCity(City city) {
-        cities.add(city);
+    public void addCity(City city, Connection connection) throws SQLException {
+        String query = "INSERT INTO cities VALUES (" + city.getId() + ", " + city.getName() + ");";
+        try (Statement statement = connection.createStatement()) {
+            statement.execute(query);
+        }
     }
 
     public List<City> getCities() {
-        return cities;
+        return null;
     }
 }
