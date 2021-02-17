@@ -1,8 +1,10 @@
 package com.game;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CitiesService {
@@ -23,7 +25,15 @@ public class CitiesService {
         }
     }
 
-    public List<City> getCities() {
-        return null;
+    public List<String> getCities(Connection connection) throws SQLException {
+        String query = "SELECT name FROM cities";
+        List<String> cityList = new ArrayList<>();
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                cityList.add(resultSet.getString(1));
+            }
+        }
+        return cityList;
     }
 }
