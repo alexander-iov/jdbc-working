@@ -22,6 +22,8 @@ public class CitiesService {
         String query = "INSERT INTO cities VALUES ('" + city.getId() + "', '" + city.getName() + "');";
         try (Statement statement = connection.createStatement()) {
             statement.execute(query);
+        } catch (SQLException e) {
+            System.out.println("Write another city name");
         }
     }
 
