@@ -12,8 +12,11 @@ public class Main {
         String url = "jdbc:sqlite:C:\\SQLite\\homeworks.db";
 
         try (Connection connection = DriverManager.getConnection(url)) {
-            System.out.println(connection.getTransactionIsolation());
-            service.addCity(new City(UUID.randomUUID().toString(), "Kiev"), connection);
+            service.createTable(connection);
+            service.addCity(new City("Odessa"), connection);
+            service.addCity(new City("Moscow"), connection);
+            service.addCity(new City("Berlin"), connection);
+            service.addCity(new City("London"), connection);
         }
 
     }

@@ -1,12 +1,14 @@
 package com.game;
 
+import java.util.UUID;
+
 public final class City {
 
     private final String id;
     private final String name;
 
-    public City(String id, String name) {
-        this.id = id;
+    public City(String name) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
     }
 
