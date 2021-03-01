@@ -27,13 +27,13 @@ public class CitiesService {
         }
     }
 
-    public List<String> getCities(Connection connection) throws SQLException {
+    public List<City> getCities(Connection connection) throws SQLException {
         String query = "SELECT name FROM cities";
-        List<String> cityList = new ArrayList<>();
+        List<City> cityList = new ArrayList<>();
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
-                cityList.add(resultSet.getString(1));
+                cityList.add(new City(resultSet.getString(1)));
             }
         }
         return cityList;
